@@ -50,7 +50,7 @@ def anal_state(start_date, end_date, auto):
     drain_count = (auto["valve_state"] == "STUPA").sum()
     stupa_count = auto["valve_state"].count() - drain_count
     drain_p = drain_count / auto["valve_state"].count()
-    stupa_p = 100 - drain_p
+    stupa_p = stupa_count / auto["valve_state"].count()
     return drain_count, stupa_count, drain_p, stupa_p
 
 def plot_temp(start_date, end_date, auto, log):
