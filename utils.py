@@ -17,33 +17,7 @@ import html
 import requests
 
 def call_ollama(sensor_data):
-    prompt_template = """
-    Using the following weather station readings:
-    - Pressure: {pressure} Pa
-    - Ambient Temperature: {ambient_temp} °C
-    - Humidity: {humidity} %
-    - Ground Temperature: {ground_temp} °C
-    - UV Intensity: {uv_intensity} mW/cm²
-    - Wind Direction: {wind_direction}° ({wind_direction_cardinal})
-    - Wind Speed: {wind_speed} m/s
-    - Rain & Snow: {rain_snow},
-
-    Please generate a fun and engaging response that includes:
-    1. A short description of the current weather conditions in Ladakh based on the data.
-    2. An interesting or fun fact about Ladakh, its geography, culture, or climate, related to the weather data.
-    3. A concluding sentence that encourages curiosity about Ladakh's unique environment.
-    """
-    prompt = prompt_template.format(
-        pressure=sensor_data['pressure'],
-        ambient_temp=sensor_data['ambient_temp'],
-        humidity=sensor_data['humidity'],
-        ground_temp=sensor_data['ground_temp'],
-        uv_intensity=sensor_data['uv_intensity'],
-        wind_direction=sensor_data['wind_direction'],
-        wind_direction_cardinal=sensor_data.get('wind_direction_cardinal', "Unknown"),
-        wind_speed=sensor_data['wind_speed'],
-        rain_snow=sensor_data['rain_snow']
-    )
+    prompt = "Provide a short overview of Ladakh, including its history, cultural and historical significance, fun facts about its unique traditions or geography, and motivational reasons to visit, such as its natural beauty, adventure opportunities, and spiritual serenity. Make it engaging, concise, and inspiring."
 
     payload = {
         "model": "smollm:360m", #llama3.2:1b granite3.1-moe:1b deepseek-r1:1.5b qwen2.5:0.5b tinyllama
